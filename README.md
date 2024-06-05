@@ -17,9 +17,9 @@ The easiest way to install _getmyancestors_ is to use pip:
 
 `pip install getmyancestors`
 
-Otherwise, you can download the source package and then execute:
+Otherwise, you can download the source package and then execute in the folder:
 
-`python3 setup.py install`
+`pip install .`
 
 How to use
 ==========
