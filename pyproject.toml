@@ -20,6 +20,7 @@ dependencies = [
     "diskcache==5.6.3",
     "requests==2.32.3",
     "fake-useragent==2.0.3",
+    "requests-ratelimiter==0.7.0"
 ]
 dynamic = ["version", "readme"]
 
@@ -37,4 +38,3 @@ getmyancestors = ["fstogedcom.png"]
 getmyancestors = "getmyancestors.getmyancestors:main"
 mergemyancestors = "getmyancestors.mergemyancestors:main"
 fstogedcom = "getmyancestors.fstogedcom:main"
-
