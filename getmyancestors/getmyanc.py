@@ -5,7 +5,6 @@ from __future__ import print_function
 import re
 import sys
 import time
-from urllib.parse import unquote
 import getpass
 import asyncio
 import argparse
@@ -13,7 +12,6 @@ import argparse
 # local imports
 from getmyancestors.classes.tree import Tree
 from getmyancestors.classes.session import Session
-
 
 
 def main():

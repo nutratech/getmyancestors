@@ -8,7 +8,7 @@ from urllib.parse import unquote
 import babelfish
 
 # local imports
-import getmyancestors
+from getmyancestors import __version__
 from getmyancestors.classes.constants import (
     MAX_PERSONS,
     FACT_EVEN,
@@ -848,7 +848,7 @@ class Tree:
         file.write("2 VERS 5.5.1\n")
         file.write("2 FORM LINEAGE-LINKED\n")
         file.write("1 SOUR getmyancestors\n")
-        file.write("2 VERS %s\n" % getmyancestors.__version__)
+        file.write("2 VERS %s\n" % __version__)
         file.write("2 NAME getmyancestors\n")
         file.write("1 DATE %s\n" % time.strftime("%d %b %Y"))
         file.write("2 TIME %s\n" % time.strftime("%H:%M:%S"))
