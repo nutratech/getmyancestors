@@ -63,6 +63,10 @@ class Note:
         if tree:
             tree.notes.append(self)
 
+    def __str__(self):
+        """Return readable string for debugging/reference purposes."""
+        return f"{self.num}. {self.text}"
+
     def print(self, file=sys.stdout):
         """print Note in GEDCOM format"""
         file.write(cont("0 @N%s@ NOTE %s" % (self.num, self.text)))
@@ -106,6 +110,10 @@ class Source:
                 for n in data["notes"]:
                     if n["text"]:
                         self.notes.add(Note(n["text"], self.tree))
+
+    def __str__(self):
+        """Return readable string for debugging/reference purposes."""
+        return f"{self.num}. {self.title}"
 
     def print(self, file=sys.stdout):
         """print Source in GEDCOM format"""
@@ -235,6 +243,10 @@ class Name:
             if "changeMessage" in data["attribution"]:
                 self.note = Note(data["attribution"]["changeMessage"], tree)
 
+    def __str__(self):
+        """Return readable string for debugging/reference purposes."""
+        return f"{self.given} {self.surname}"
+
     def print(self, file=sys.stdout, typ=None):
         """print Name in GEDCOM format
         :param typ: type for additional names
@@ -314,6 +326,10 @@ class Indi:
         self.notes = set()
         self.sources = set()
         self.memories = set()
+
+    def __str__(self):
+        """Return readable string for debugging/reference purposes."""
+        return f"{self.num}. {self.name}, fam: {self.fid}"
 
     def add_data(self, data):
         """add FS individual data"""
