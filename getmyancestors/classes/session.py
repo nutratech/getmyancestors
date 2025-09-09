@@ -12,6 +12,9 @@ from requests_ratelimiter import LimiterAdapter
 # local imports
 from getmyancestors.classes.translation import translations
 
+DEFAULT_CLIENT_ID = "a02j000000KTRjpAAH"
+DEFAULT_REDIRECT_URI = "https://misbach.github.io/fs-auth/index_raw.html"
+
 
 class Session(requests.Session):
     """Create a FamilySearch session
@@ -25,8 +28,8 @@ class Session(requests.Session):
         self,
         username,
         password,
-        client_id,
-        redirect_uri,
+        client_id=None,
+        redirect_uri=None,
         verbose=False,
         logfile=False,
         timeout=60,
@@ -34,8 +37,8 @@ class Session(requests.Session):
         super().__init__()
         self.username = username
         self.password = password
-        self.client_id = client_id
-        self.redirect_uri = redirect_uri
+        self.client_id = client_id or DEFAULT_CLIENT_ID
+        self.redirect_uri = redirect_uri or DEFAULT_REDIRECT_URI
         self.verbose = verbose
         self.logfile = logfile
         self.timeout = timeout

@@ -512,7 +512,7 @@ class Download(Frame):
         cache.add("save_password", save_pass)
 
         url = "/service/tree/tree-data/reservations/person/%s/ordinances" % self.fs.fid
-        lds_account = self.fs.get_url(url, {}).get("status") == "OK"
+        lds_account = self.fs.get_url(url, {}, no_api=True).get("status") == "OK"
         self.options = Options(self.form, lds_account)
         self.info("")
         self.sign_in.destroy()

@@ -14,8 +14,6 @@ import argparse
 from getmyancestors.classes.tree import Tree
 from getmyancestors.classes.session import Session
 
-DEFAULT_CLIENT_ID = "a02j000000KTRjpAAH"
-DEFAULT_REDIRECT_URI = "https://misbach.github.io/fs-auth/index_raw.html"
 
 
 def main():
@@ -180,8 +178,8 @@ def main():
     fs = Session(
         args.username,
         args.password,
-        args.client_id or DEFAULT_CLIENT_ID,
-        args.redirect_uri or DEFAULT_REDIRECT_URI,
+        args.client_id,
+        args.redirect_uri,
         args.verbose,
         args.logfile,
         args.timeout,
