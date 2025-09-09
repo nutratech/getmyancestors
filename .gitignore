@@ -134,7 +134,7 @@ dmypy.json
 dump.rdb
 
 # Dotfiles
-.*
+/.idea
 !.gitignore
 !.readthedocs.yml
 

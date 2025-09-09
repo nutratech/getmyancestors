@@ -1,0 +1,43 @@
+---
+name: lint
+
+"on":
+  push: {}
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: [ubuntu-latest]
+
+    env:
+      SKIP_VENV: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Fetch master (for incremental diff, lint filter mask)
+        run: git fetch origin master
+
+      - name: Reload Cache / pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3
+          cache: "pip" # caching pip dependencies
+          cache-dependency-path: "**/*requirements*.txt"
+          update-environment: false
+
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+          pip install -r .requirements-lint.txt
+
+          # NOTE: pytest is needed to lint the folder: "tests/"
+          # pip install -r requirements-test.txt
+
+      - name: Lint
+        run: make lint
