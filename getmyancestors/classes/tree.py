@@ -757,7 +757,7 @@ class Indi:
         if self.living:
             return res, famc
         url = "/service/tree/tree-data/reservations/person/%s/ordinances" % self.fid
-        data = self.tree.fs.get_url(url, {})
+        data = self.tree.fs.get_url(url, {}, no_api=True)
         if data:
             for key, o in data["data"].items():
                 if key == "baptism":

@@ -16,10 +16,10 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = [
-    "babelfish==0.6.0",
-    "diskcache==5.2.1",
-    "requests==2.25.1",
-    "fake-useragent==1.2.1",
+    "babelfish==0.6.1",
+    "diskcache==5.6.3",
+    "requests==2.32.3",
+    "fake-useragent==2.0.3",
 ]
 dynamic = ["version", "readme"]
 

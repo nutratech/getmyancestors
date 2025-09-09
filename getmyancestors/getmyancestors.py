@@ -136,33 +136,34 @@ def main():
         help="Save settings into file [False]",
     )
     parser.add_argument(
+        "-o",
+        "--outfile",
+        metavar="<FILE>",
+        type=argparse.FileType("w", encoding="UTF-8"),
+        default=sys.stdout,
+        help="output GEDCOM file [stdout]",
+    )
+    parser.add_argument(
+        "-l",
+        "--logfile",
+        metavar="<FILE>",
+        type=argparse.FileType("w", encoding="UTF-8"),
+        default=False,
+        help="output log file [stderr]",
+    )
+    parser.add_argument(
+        "--client_id", metavar="<STR>", type=str, help="Use Specific Client ID"
+    )
+    parser.add_argument(
+        "--redirect_uri", metavar="<STR>", type=str, help="Use Specific Redirect Uri"
+    )
+    parser.add_argument(
         "-g",
         "--geonames",
         metavar="<STR>",
         type=str,
         help="Geonames.org username in order to download place data",
     )
-    try:
-        parser.add_argument(
-            "-o",
-            "--outfile",
-            metavar="<FILE>",
-            # type=argparse.FileType("w", encoding="UTF-8"),
-            # default=sys.stdout,
-            help="output GEDCOM file [stdout]",
-        )
-        parser.add_argument(
-            "-l",
-            "--logfile",
-            metavar="<FILE>",
-            type=argparse.FileType("w", encoding="UTF-8"),
-            default=False,
-            help="output log file [stderr]",
-        )
-    except TypeError:
-        sys.stderr.write("Python >= 3.4 is required to run this script\n")
-        sys.stderr.write("(see https://docs.python.org/3/whatsnew/3.4.html#argparse)\n")
-        sys.exit(2)
 
     # extract arguments from the command line
     try:
@@ -220,6 +221,15 @@ def main():
 
     # initialize a FamilySearch session and a family tree object
     print("Login to FamilySearch...", file=sys.stderr)
+    fs = Session(
+        args.username,
+        args.password,
+        args.client_id,
+        args.redirect_uri,
+        args.verbose,
+        args.logfile,
+        args.timeout,
+    )
     if args.cache:
         print("Using cache...", file=sys.stderr)
         fs = CachedSession(args.username, args.password, args.verbose, args.logfile, args.timeout)
@@ -229,7 +239,7 @@ def main():
         sys.exit(2)
     _ = fs._
     tree = Tree(
-        fs, 
+        fs,
         exclude=args.exclude,
         geonames_key=args.geonames,
     )
@@ -237,9 +247,10 @@ def main():
     # check LDS account
     if args.get_ordinances:
         test = fs.get_url(
-            "/service/tree/tree-data/reservations/person/%s/ordinances" % fs.fid, {}
+            "/service/tree/tree-data/reservations/person/%s/ordinances" % fs.fid, {}, no_api=True
         )
-        if test["status"] != "OK":
+        if not test or test["status"] != "OK":
+            print("Need an LDS account")
             sys.exit(2)
 
     try:
@@ -247,8 +258,6 @@ def main():
         todo = args.individuals if args.individuals else [fs.fid]
         print(_("Downloading starting individuals..."), file=sys.stderr)
         tree.add_indis(todo)
-
-
 
         # download ancestors
         if args.distance == 0:
