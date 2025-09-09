@@ -1,6 +1,5 @@
 # coding: utf-8
 
-# global imports
 from __future__ import print_function
 
 import argparse
@@ -11,8 +10,8 @@ import sys
 import time
 from urllib.parse import unquote
 
-from getmyancestors.classes.session import Session
 # local imports
+from getmyancestors.classes.session import Session
 from getmyancestors.classes.tree import Tree
 
 
