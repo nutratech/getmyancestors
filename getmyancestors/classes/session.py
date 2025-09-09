@@ -80,7 +80,7 @@ class Session(requests.Session):
                 )
                 res.raise_for_status()
 
-                url = f"https://ident.familysearch.org/cis-web/oauth2/v3/authorization"
+                url = "https://ident.familysearch.org/cis-web/oauth2/v3/authorization"
                 params = {
                     "response_type": "code",
                     "scope": "profile email qualifies_for_affiliate_account country",
@@ -93,7 +93,7 @@ class Session(requests.Session):
                 response.raise_for_status()
                 try:
                     code = parse_qs(urlparse(response.url).query).get("code")[0]
-                except Exception as e:
+                except Exception:
                     webbrowser.open(response.url)
                     print(
                         "Please log in to the web page that just opened and try again."

@@ -8,7 +8,6 @@ import getpass
 import re
 import sys
 import time
-from urllib.parse import unquote
 
 # local imports
 from getmyancestors.classes.session import Session
