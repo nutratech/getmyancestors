@@ -6,3 +6,4 @@ lint:
 	black $(LINT_LOCS)
 	isort $(LINT_LOCS)
 	pylint $(LINT_LOCS)
+	mypy $(LINT_LOCS)
