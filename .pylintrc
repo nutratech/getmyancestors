@@ -11,6 +11,7 @@ disable=
     missing-module-docstring,
     missing-function-docstring,
     duplicate-code,
+    too-few-public-methods,
     too-many-arguments,
     too-many-positional-arguments,
     too-many-instance-attributes,
