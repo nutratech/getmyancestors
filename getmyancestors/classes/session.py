@@ -46,8 +46,8 @@ class Session(requests.Session):
         self.counter = 0
         self.headers = {"User-Agent": UserAgent().firefox}
 
-        # Apply a rate-limit (5 requests per second) to all requests
-        adapter = LimiterAdapter(per_second=5)
+        # Apply a rate-limit (max # requests per second) to all endpoints
+        adapter = LimiterAdapter(per_second=8)
         self.mount('http://', adapter)
         self.mount('https://', adapter)
 
