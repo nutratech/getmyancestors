@@ -44,6 +44,7 @@ ORDINANCES_STATUS = {
     "NotNeeded": "INFANT",
 }
 
+
 # mergemyancestors constants and functions
 def reversed_dict(d):
     return {val: key for key, val in d.items()}

@@ -1,15 +1,15 @@
 # mergemyancestors classes
+from getmyancestors.classes.constants import FACT_TYPES, ORDINANCES
 from getmyancestors.classes.tree import (
-    Indi,
     Fact,
     Fam,
+    Indi,
     Memorie,
     Name,
     Note,
     Ordinance,
     Source,
 )
-from getmyancestors.classes.constants import FACT_TYPES, ORDINANCES
 
 
 class Gedcom:

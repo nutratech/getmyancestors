@@ -2,18 +2,18 @@
 
 # global imports
 from __future__ import print_function
+
+import argparse
+import asyncio
+import getpass
 import re
 import sys
 import time
 from urllib.parse import unquote
-import getpass
-import asyncio
-import argparse
 
+from getmyancestors.classes.session import Session
 # local imports
 from getmyancestors.classes.tree import Tree
-from getmyancestors.classes.session import Session
-
 
 
 def main():
@@ -192,7 +192,9 @@ def main():
     # check LDS account
     if args.get_ordinances:
         test = fs.get_url(
-            "/service/tree/tree-data/reservations/person/%s/ordinances" % fs.fid, {}, no_api=True
+            "/service/tree/tree-data/reservations/person/%s/ordinances" % fs.fid,
+            {},
+            no_api=True,
         )
         if not test or test["status"] != "OK":
             print("Need an LDS account")

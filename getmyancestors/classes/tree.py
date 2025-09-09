@@ -1,7 +1,7 @@
-import sys
-import re
-import time
 import asyncio
+import re
+import sys
+import time
 from urllib.parse import unquote
 
 # global imports
@@ -10,9 +10,9 @@ import babelfish
 # local imports
 import getmyancestors
 from getmyancestors.classes.constants import (
-    MAX_PERSONS,
     FACT_EVEN,
     FACT_TAGS,
+    MAX_PERSONS,
     ORDINANCES_STATUS,
 )
 

@@ -1,8 +1,8 @@
 # global imports
 import sys
 import time
-from urllib.parse import urlparse, parse_qs
 import webbrowser
+from urllib.parse import parse_qs, urlparse
 
 import requests
 from fake_useragent import UserAgent
