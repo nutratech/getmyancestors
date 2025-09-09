@@ -14,7 +14,7 @@ from getmyancestors.classes.session import Session
 from getmyancestors.classes.tree import Tree
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(
         description="Retrieve GEDCOM data from FamilySearch Tree (4 Jul 2016)",
         add_help=False,
@@ -147,7 +147,7 @@ def main():
     # Report settings used when getmyancestors is executed
     if args.save_settings and args.outfile.name != "<stdout>":
 
-        def parse_action(act):
+        def parse_action(act) -> str:
             if not args.show_password and act.dest == "password":
                 return "******"
             value = getattr(args, act.dest)
@@ -173,7 +173,7 @@ def main():
 
     # initialize a FamilySearch session and a family tree object
     print("Login to FamilySearch...", file=sys.stderr)
-    fs = Session(
+    fs = Session(  # type: ignore
         args.username,
         args.password,
         args.client_id,
@@ -185,7 +185,7 @@ def main():
     if not fs.logged:
         sys.exit(2)
     _ = fs._
-    tree = Tree(fs)
+    tree: Tree = Tree(fs)  # type: ignore
 
     # check LDS account
     if args.get_ordinances:
@@ -285,6 +285,8 @@ def main():
             ),
             file=sys.stderr,
         )
+
+    return 0
 
 
 if __name__ == "__main__":

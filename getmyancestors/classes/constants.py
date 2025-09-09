@@ -46,7 +46,7 @@ ORDINANCES_STATUS = {
 
 
 # mergemyancestors constants and functions
-def reversed_dict(d):
+def reversed_dict(d: dict) -> dict:
     return {val: key for key, val in d.items()}
 
 
